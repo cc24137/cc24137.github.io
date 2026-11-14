@@ -18,6 +18,40 @@ import cotucaFoto from './assets/cotucaFoto.jpg'
 const devicon = (path) =>
     `https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${path}`;
 
+
+const criarCapaProjeto = (sigla, legenda, corTema) => {
+    const svg = `
+        <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="640" viewBox="0 0 1200 640">
+            <defs>
+                <linearGradient id="fundo" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#172036" />
+                    <stop offset="100%" stop-color="#0c1326" />
+                </linearGradient>
+                <radialGradient id="brilho">
+                    <stop offset="0%" stop-color="${corTema}" stop-opacity=".35" />
+                    <stop offset="100%" stop-color="${corTema}" stop-opacity="0" />
+                </radialGradient>
+            </defs>
+            <rect width="1200" height="640" fill="url(#fundo)" />
+            <circle cx="945" cy="280" r="420" fill="url(#brilho)" />
+            <g stroke="${corTema}" stroke-width="3" stroke-opacity=".35" fill="none">
+                <path d="M680 410 L770 290 L855 346 L957 205 L1050 277" />
+                <path d="M690 510 L800 455 L917 495 L1080 382" />
+                <circle cx="770" cy="290" r="12" />
+                <circle cx="855" cy="346" r="12" />
+                <circle cx="957" cy="205" r="12" />
+                <circle cx="917" cy="495" r="12" />
+            </g>
+            <rect x="76" y="95" width="70" height="7" rx="3" fill="${corTema}" />
+            <text x="76" y="335" font-family="Arial, sans-serif" font-size="102"
+                  font-weight="800" fill="#f8fafc">${sigla}</text>
+            <text x="81" y="397" font-family="Arial, sans-serif" font-size="28"
+                  letter-spacing="3" fill="${corTema}">${legenda}</text>
+        </svg>`;
+
+    return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`;
+};
+
 function App() {
 
     const [simulacaoAtiva, setSimulacaoAtiva] = useState(() => {
@@ -151,7 +185,7 @@ function App() {
             codigo: 'PRJ.01',
             categoria: 'IA / VISÃO COMPUTACIONAL',
             descricao:
-                'Ferramenta de Observação e Classificação de Atenção: uma plataforma baseada em IA que analisa métricas de engajamento em sala de aula em tempo real e gera feedbacks para apoiar professores no aprimoramento da didática.',
+                'Plataforma de IA que utiliza análise de imagens para estimar o engajamento de estudantes em sala de aula e gerar feedbacks aos professores. Atuei no treinamento e na integração dos modelos de detecção facial, além do gerenciamento de APIs e bancos de dados SQL.',
             corTema: '#5cc8ff',
             tags: ['React', 'Node.js', 'Python', 'SQL', 'Visão Computacional'],
             imagem: 'https://opengraph.githubassets.com/1/cc24137/FOCA',
@@ -160,56 +194,56 @@ function App() {
         },
         {
             id: 2,
-            titulo: 'Meownagement',
+            titulo: 'Detecção de Fraudes Transacionais',
             codigo: 'PRJ.02',
+            categoria: 'IA / MACHINE LEARNING',
+            descricao:
+                'Projeto de aprendizado de máquina voltado à identificação de transações fraudulentas. Inclui tratamento de dados, engenharia de atributos, experimentação e treinamento de modelos supervisionados, avaliação por métricas de lucro e integração do modelo a uma API.',
+            corTema: '#f9a66c',
+            tags: ['Python', 'Scikit-learn', 'FastAPI', 'SQL', 'Machine Learning'],
+            imagem: criarCapaProjeto('FRAUD', 'TRANSACTION DETECTION', '#f9a66c'),
+            linkLive: null,
+            linkGithub: null, // Não informado no currículo.
+        },
+        {
+            id: 3,
+            titulo: 'Caixeiro Viajante com Coleta e Entrega',
+            codigo: 'PRJ.03',
+            categoria: 'OTIMIZAÇÃO / METAHEURÍSTICAS',
+            descricao:
+                'Estudo do Problema do Caixeiro Viajante com restrições de coleta e entrega (PDTSP). Modelei o problema em Python, implementei as metaheurísticas Iterated Local Search (ILS) e Biased Random-Key Genetic Algorithm (BRKGA) e comparei seus resultados com gráficos Time-to-Target.',
+            corTema: '#a78bfa',
+            tags: ['Python', 'ILS', 'BRKGA', 'Otimização', 'Time-to-Target'],
+            imagem: criarCapaProjeto('PDTSP', 'COMBINATORIAL OPTIMIZATION', '#a78bfa'),
+            linkLive: null,
+            linkGithub: null, // Não informado no currículo.
+        },
+        {
+            id: 4,
+            titulo: 'Sistema de Medição de Velocidade IoT',
+            codigo: 'PRJ.04',
+            categoria: 'IOT / SISTEMAS EMBARCADOS',
+            descricao:
+                'Aplicação web integrada a um ESP32 e a um sensor infravermelho para medir a velocidade de um carrinho. Utiliza uma API REST assíncrona em MicroPython com Microdot para comunicar e exibir os resultados, unindo hardware e interface web.',
+            corTema: '#35d0ba',
+            tags: ['ESP32', 'MicroPython', 'Microdot', 'REST API', 'JavaScript', 'HTML', 'CSS'],
+            imagem: 'https://opengraph.githubassets.com/1/cc24137/ProjetoHotWheelsESP32',
+            linkLive: null,
+            linkGithub: 'https://github.com/cc24137/ProjetoHotWheelsESP32',
+        },
+        {
+            id: 5,
+            titulo: 'Meownagement',
+            codigo: 'PRJ.05',
             categoria: 'MOBILE / FINTECH',
             descricao:
-                'Aplicativo mobile gamificado de finanças pessoais que combina controle automatizado de despesas com recompensas e colecionáveis digitais personalizáveis.',
+                'Aplicativo mobile gamificado para gestão de finanças pessoais, combinando controle de despesas com recompensas e colecionáveis digitais. Trabalhei na modelagem do banco de dados, no desenvolvimento de telas em Flutter e na integração de APIs REST com o backend em C#.',
             corTema: '#ff8bbd',
             tags: ['Flutter', 'Dart', 'C#', '.NET Core', 'REST API', 'SQL'],
             imagem: 'https://opengraph.githubassets.com/1/cc24139/Meownagement',
             linkLive: null,
             linkGithub: 'https://github.com/cc24139/Meownagement',
         },
-        {
-            id: 3,
-            titulo: 'Hot Wheels Speed Measurement',
-            codigo: 'PRJ.03',
-            categoria: 'IOT / SISTEMAS EMBARCADOS',
-            descricao:
-                'Sistema de medição de velocidade com ESP32 e sensor infravermelho, integrado a uma aplicação web por uma API assíncrona em MicroPython para exibir os resultados em tempo real.',
-            corTema: '#35d0ba',
-            tags: ['ESP32', 'MicroPython', 'REST API', 'JavaScript', 'HTML', 'CSS'],
-            imagem: 'https://opengraph.githubassets.com/1/cc24137/ProjetoHotWheelsESP32',
-            linkLive: null,
-            linkGithub: 'https://github.com/cc24137/ProjetoHotWheelsESP32',
-        },
-        {
-            id: 4,
-            titulo: 'Porta dos Mistérios',
-            codigo: 'PRJ.04',
-            categoria: 'GAME DEVELOPMENT',
-            descricao:
-                'Jogo 2D de investigação e stealth desenvolvido na Unity, explorando mecânicas de exploração, interação e arquitetura de software aplicada a jogos.',
-            corTema: '#a78bfa',
-            tags: ['Unity', 'C#', 'Game Development'],
-            imagem: 'https://opengraph.githubassets.com/1/cc24137/Porta-dos-Misterios',
-            linkLive: null,
-            linkGithub: 'https://github.com/cc24137/Porta-dos-Misterios',
-        },
-        {
-            id: 5,
-            titulo: "Ling's Lore",
-            codigo: 'PRJ.05',
-            categoria: 'GAME DEVELOPMENT',
-            descricao:
-                'Jogo 2D de plataforma e combate desenvolvido em Javascript e HTML, com foco em lógica de colisões, mecânicas de plataforma e design de níveis.',
-            corTema: '#facc15',
-            tags: ['Javascript', 'Canvas', 'Game Development'],
-            imagem: 'https://opengraph.githubassets.com/1/rafafbd/Lings-Lore',
-            linkGithub: 'https://github.com/rafafbd/Lings-Lore',
-            linkLive: 'https://lingslore-game.netlify.app/',
-        }
     ];
 
     const eventosData = [
@@ -480,26 +514,31 @@ function App() {
                                 ))}
                             </div>
 
-                            <div className="display-actions">
-                                {projetosData[projetoAngular].linkLive && (
-                                    <a
-                                        href={projetosData[projetoAngular].linkLive}
-                                        target="_blank"
-                                        rel="noreferrer"
-                                        className="angular-btn btn-action"
-                                    >
-                                        ACESSAR PROJETO
-                                    </a>
-                                )}
-                                <a
-                                    href={projetosData[projetoAngular].linkGithub}
-                                    target="_blank"
-                                    rel="noreferrer"
-                                    className="angular-btn btn-outline"
-                                >
-                                    REPOSITÓRIO
-                                </a>
-                            </div>
+                            {(projetosData[projetoAngular].linkLive ||
+                                projetosData[projetoAngular].linkGithub) && (
+                                <div className="display-actions">
+                                    {projetosData[projetoAngular].linkLive && (
+                                        <a
+                                            href={projetosData[projetoAngular].linkLive}
+                                            target="_blank"
+                                            rel="noreferrer"
+                                            className="angular-btn btn-action"
+                                        >
+                                            ACESSAR PROJETO
+                                        </a>
+                                    )}
+                                    {projetosData[projetoAngular].linkGithub && (
+                                        <a
+                                            href={projetosData[projetoAngular].linkGithub}
+                                            target="_blank"
+                                            rel="noreferrer"
+                                            className="angular-btn btn-outline"
+                                        >
+                                            REPOSITÓRIO
+                                        </a>
+                                    )}
+                                </div>
+                            )}
                         </div>
                     </div>
                 </div>
